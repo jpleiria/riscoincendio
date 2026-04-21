@@ -29,13 +29,34 @@
       align-items: flex-start;
     }
 
+    /* Agrupa os dois mapas lado a lado */
+    .maps-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      align-items: flex-start;
+      flex: 0 0 auto;
+    }
+
     /* LARGURA: Aumentada para 340px */
     .map-section {
       flex: 0 0 340px;
       width: 340px;
     }
 
-    /* MOLDURA: Mantida em 720px de altura */
+    /* Título do mapa */
+    .map-title {
+      font-size: 14px;
+      text-align: center;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0 0 8px 0;
+      font-weight: 600;
+    }
+
+    /* MOLDURA: Mantida em 670px de altura */
     .map-wrapper {
       position: relative; 
       height: 670px; 
@@ -49,7 +70,7 @@
     .map-wrapper iframe {
       position: absolute; 
       top: -260px; 
-      left: -100px; /* Ajustado para manter o centro com a nova largura */
+      left: -100px;
       width: 155%; 
       height: 1100px; 
       border: none;
@@ -104,18 +125,19 @@
     }
 
     .footer { 
-  text-align: center; 
-  margin-top: 40px; 
-  color: var(--muted); 
-  font-size: 11px; 
-  font-weight: 300; /* Define uma espessura mais fina */
-  opacity: 0.7; 
-  width: 100%; 
-  line-height: 1.5; /* Melhora o espaçamento entre as duas linhas */
-}
+      text-align: center; 
+      margin-top: 40px; 
+      color: var(--muted); 
+      font-size: 11px; 
+      font-weight: 300;
+      opacity: 0.7; 
+      width: 100%; 
+      line-height: 1.5;
+    }
 
     @media (max-width: 768px) {
       .main-container { flex-direction: column; align-items: center; }
+      .maps-group { flex-direction: column; align-items: center; }
       .map-section { width: 100%; max-width: 100%; }
       .map-wrapper { height: 600px; }
     }
@@ -129,15 +151,46 @@
 
   <div class="main-container">
     
-    <div class="map-section">
-      <div class="map-wrapper">
-        <iframe 
-          src="https://www.ipma.pt/pt/riscoincendio/rcm.pt/" 
-          scrolling="no">
-        </iframe>
+    <!-- Grupo dos dois mapas lado a lado -->
+    <div class="maps-group">
+
+      <!-- Mapa Hoje -->
+      <div class="map-section">
+        <p class="map-title">📅 Hoje</p>
+        <div class="map-wrapper">
+          <iframe 
+            src="https://www.ipma.pt/pt/riscoincendio/rcm.pt/" 
+            scrolling="no">
+          </iframe>
+        </div>
       </div>
+
+      <!-- Mapa Amanhã -->
+      <div class="map-section">
+        <p class="map-title">📅 Amanhã</p>
+        <div class="map-wrapper">
+          <iframe 
+            src="https://www.ipma.pt/pt/riscoincendio/rcm.pt/#1%231009" 
+            scrolling="no">
+          </iframe>
+        </div>
+      </div>
+
+<!-- Mapa Amanhã -->
+      <div class="map-section">
+        <p class="map-title">📅 Depois de Amanhã</p>
+        <div class="map-wrapper">
+          <iframe 
+            src="https://www.ipma.pt/pt/riscoincendio/rcm.pt/#2%231009" 
+            scrolling="no">
+          </iframe>
+        </div>
+      </div>
+
+
     </div>
 
+    <!-- Secção dos Concelhos -->
     <div class="concelhos-section">
       <div class="card">
         <h2>Leiria</h2>
@@ -146,28 +199,28 @@
         </div>
       </div>
 
-<div class="card">
+      <div class="card">
         <h2>Marinha Grande</h2>
         <div class="graph-box">
           <iframe src="https://fogos.icnf.pt/rif/Stat_Global_Sensibilizacao_Riscolist2.asp?x_Distrito=Leiria&x_Concelho=Marinha+Grande" scrolling="no"></iframe>
         </div>
       </div>
 
- <div class="card">
+      <div class="card">
         <h2>Ourém</h2>
         <div class="graph-box">
           <iframe src="https://fogos.icnf.pt/rif/Stat_Global_Sensibilizacao_Riscolist2.asp?x_Distrito=Santarém&x_Concelho=Ourém" scrolling="no"></iframe>
         </div>
       </div>
 
-   <div class="card">
+      <div class="card">
         <h2>Pombal</h2>
         <div class="graph-box">
           <iframe src="https://fogos.icnf.pt/rif/Stat_Global_Sensibilizacao_Riscolist2.asp?x_Distrito=Leiria&x_Concelho=Pombal" scrolling="no"></iframe>
         </div>
       </div>
 
-    <div class="card">
+      <div class="card">
         <h2>Batalha</h2>
         <div class="graph-box">
           <iframe src="https://fogos.icnf.pt/rif/Stat_Global_Sensibilizacao_Riscolist2.asp?x_Distrito=Leiria&x_Concelho=Batalha" scrolling="no"></iframe>
@@ -190,12 +243,11 @@
 
       <div class="texto-apoio">
         <h3>⚠️Alerta</h3>
-        <p>É totalmente proibido o uso do fogo bem como maquinaria em espaço florestal quando o nível de alerta é <strong>Muito Elevado<strong> ou <strong>Máximo<strong> </p>
+        <p>É totalmente proibido o uso do fogo bem como maquinaria em espaço florestal quando o nível de alerta é <strong>Muito Elevado</strong> ou <strong>Máximo</strong></p>
         <p style="margin-top: 10px; font-size: 12px; color: var(--accent);">
         </p>
       </div>
-      </div>
- 
+    </div>
 
   </div>
 
