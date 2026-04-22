@@ -29,7 +29,6 @@
       align-items: flex-start;
     }
 
-    /* Agrupa os dois mapas lado a lado */
     .maps-group {
       display: flex;
       flex-wrap: wrap;
@@ -39,13 +38,11 @@
       flex: 0 0 auto;
     }
 
-    /* LARGURA: Aumentada para 340px */
     .map-section {
       flex: 0 0 340px;
       width: 340px;
     }
 
-    /* Título do mapa */
     .map-title {
       font-size: 14px;
       text-align: center;
@@ -56,7 +53,6 @@
       font-weight: 600;
     }
 
-    /* MOLDURA: Mantida em 670px de altura */
     .map-wrapper {
       position: relative; 
       height: 670px; 
@@ -66,7 +62,6 @@
       border: 1px solid var(--line);
     }
 
-    /* AJUSTE IFRAME: Reajustado para a nova largura de 340px */
     .map-wrapper iframe {
       position: absolute; 
       top: -260px; 
@@ -77,7 +72,6 @@
       pointer-events: none;
     }
 
-    /* Configurações dos Concelhos (Inalteradas) */
     .concelhos-section {
       flex: 1;
       display: grid;
@@ -151,10 +145,7 @@
 
   <div class="main-container">
     
-    <!-- Grupo dos dois mapas lado a lado -->
     <div class="maps-group">
-
-      <!-- Mapa Hoje -->
       <div class="map-section">
         <p class="map-title">📅 Hoje</p>
         <div class="map-wrapper">
@@ -165,7 +156,6 @@
         </div>
       </div>
 
-      <!-- Mapa Amanhã -->
       <div class="map-section">
         <p class="map-title">📅 Amanhã</p>
         <div class="map-wrapper">
@@ -176,7 +166,6 @@
         </div>
       </div>
 
-<!-- Mapa Amanhã -->
       <div class="map-section">
         <p class="map-title">📅 Depois de Amanhã</p>
         <div class="map-wrapper">
@@ -186,11 +175,8 @@
           </iframe>
         </div>
       </div>
-
-
     </div>
 
-    <!-- Secção dos Concelhos -->
     <div class="concelhos-section">
       <div class="card">
         <h2>Leiria</h2>
@@ -228,17 +214,14 @@
       </div>
 
       <div class="texto-apoio">
-        <h3>⚠️Alerta</h3>
-        <p>É totalmente proibido o uso do fogo bem como maquinaria em espaço florestal quando o nível de alerta é <strong>Muito Elevado</strong> ou <strong>Máximo</strong></p>
-        <p style="margin-top: 10px; font-size: 12px; color: var(--accent);">
-        </p>
+        <h3 style="color: var(--accent); margin-bottom: 5px;">⚠️ Alerta</h3>
+        <p>É totalmente proibido o uso do fogo bem como maquinaria em espaço florestal quando o nível de alerta é <strong>Muito Elevado</strong> ou <strong>Máximo</strong>.</p>
       </div>
     </div>
-
   </div>
 
   <div class="footer">
-    Monitorização em Tempo Real | Fontes: ICNF e IPMA | Atualização automática a cada 60 min.<br>CBSL | SCh2ª João Paulo Pereira
+    Monitorização em Tempo Real | Fontes: ICNF e IPMA | Atualização automática forçada a cada 60 min.<br>CBSL | SCh2ª João Paulo Pereira
   </div>
 </div>
 
@@ -247,14 +230,22 @@ function exibirData() {
   const agora = new Date();
   const opcoes = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
   let data = agora.toLocaleDateString('pt-PT', opcoes);
-  
-  // Coloca apenas a primeira letra da frase em maiúscula e mantém os "de" em minúsculas
   data = data.charAt(0).toUpperCase() + data.slice(1);
-  
   document.getElementById('data-atual').innerText = data;
 }
-  exibirData();
-  setTimeout(() => { window.location.reload(); }, 3600000);
+
+// Função que força o recarregamento total limpando a cache
+function forceReload() {
+  const currentUrl = window.location.href.split('?')[0].split('#')[0];
+  const timestamp = new Date().getTime();
+  // Mantém a estrutura limpa e recarrega a página com um parâmetro novo
+  window.location.href = currentUrl + "?v=" + timestamp;
+}
+
+exibirData();
+
+// Executa o reload forçado a cada 60 minutos (3600000 ms)
+setTimeout(forceReload, 3600000);
 </script>
 
 </body>
